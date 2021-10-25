@@ -1,5 +1,5 @@
 # Kods ņemts no https://www.delftstack.com/howto/python/python-clear-console/
-
+# TODO add this to Game object
 import os
 
 def clearConsole():
