@@ -47,7 +47,7 @@ for word in words_list:
     unpopular_letters_count.append(count)
 
 score_list = []
-for n in range(0, len(words_list)):
+for n in range(738, 739):
 
     #Vārda garuma punktu sadale
     word_len_score = 0
@@ -62,18 +62,17 @@ for n in range(0, len(words_list)):
 
 
     #Unikālo burtu punktu sadale
-
-    letter_repetitiveness = int(((word_len[n] - word_len_unique[n]) * 100) / word_len[n])
-
     letter_repetitiveness_score = 0
-    if letter_repetitiveness < 40:
-        letter_repetitiveness_score +=3
-    elif letter_repetitiveness < 60:
-        letter_repetitiveness_score += 2
-    elif letter_repetitiveness < 80:
-        letter_repetitiveness_score += 1
-    else:
-        pass
+    if word_len[n] > 7:
+        letter_repetitiveness = int(((word_len[n] - word_len_unique[n]) * 100) / word_len[n])
+        if letter_repetitiveness < 40:
+            letter_repetitiveness_score +=3
+        elif letter_repetitiveness < 60:
+            letter_repetitiveness_score += 2
+        elif letter_repetitiveness < 80:
+            letter_repetitiveness_score += 1
+        else:
+            pass
 
     #Nepopulāro burtu punktu sadale
 
@@ -111,11 +110,11 @@ for n in range(0, len(words_list)):
     #for l in abc:
     #    print(f"{l} = {words_str.count(l)}")
 
-    #print(words_list[n])
-    #print(f'Vārda garums: {word_len[n]}, score: {word_len_score}')
-    #print(f'Unikālo butu skaits: {word_len_unique[n]}, score: {letter_repetitiveness_score}')
-    #print(f'Populāro burtu skaits: {popular_letters_count[n]}, score: {popular_letter_score}')
-    #print(f'Nepopulāro burtu skaits: {unpopular_letters_count[n]}, score: {unpopular_letter_score}')
+    print(words_list[n])
+    print(f'Vārda garums: {word_len[n]}, score: {word_len_score}')
+    print(f'Unikālo butu skaits: {word_len_unique[n]}, score: {letter_repetitiveness_score}')
+    print(f'Populāro burtu skaits: {popular_letters_count[n]}, score: {popular_letter_score}')
+    print(f'Nepopulāro burtu skaits: {unpopular_letters_count[n]}, score: {unpopular_letter_score}')
 
     score = word_len_score + letter_repetitiveness_score + popular_letter_score + unpopular_letter_score
     #print(f'Score: {score}')
