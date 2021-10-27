@@ -2,7 +2,7 @@
 
 # izveidojam jaunu klasi Game
 from helpers.clear import clearConsole
-
+#123
 
 class Game:
     # veicam klases inicializāciju nododot tai minamo vārdu
