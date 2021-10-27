@@ -1,4 +1,9 @@
+
+
 # izveidojam jaunu klasi Game
+from helpers.clear import clearConsole
+
+
 class Game:
     # veicam klases inicializāciju nododot tai minamo vārdu
     def __init__(self, vards):
@@ -23,13 +28,13 @@ class Game:
 
     # Metode, kura izvada uzvaras paziņojumu
     def _uzvaras_pazinojums(self):
+        clearConsole()
         print("\nApsveicu tu uzminēji vārdu!")
         print(f"Nezināmais vārds bija {self.vards}.\n")
 
     # Metode, kura satur spēles pamatloģiku
     def play(self):
-        # Iepazīšanās ar spēli
-        print("\nSveicināti karātavās!")
+
         print(f"Uzmini vārdu, kas sastāv no {len(self.vards)} burtiem.\n")
 
         # Uzsākam spēles pamatciklu
@@ -49,7 +54,7 @@ class Game:
                     deriga_ievade = True
                 else:
                     # Nederīgs minējums
-                    print("Netika ievadīts burts vai vārds. Lūdzu mēģini vēlreiz.")
+                    print("\nNetika ievadīts burts vai vārds. Lūdzu mēģini vēlreiz.")
             
             # Noskaidrojam minējuma garumu, t.i. vai ir minēts burts vai vārds
             if len(minejums) == 1:
@@ -57,8 +62,9 @@ class Game:
                 # Pārbaudam vai šāds burts jau ir minēts
                 if minejums in self.minetie_burti:
                     # Šāds burts jau ir minēts
-                    self.dzivibas -= 1
-                    print("\nŠo burtu tu jau esi minējis!")
+                    #self.dzivibas -= 1
+                    clearConsole()
+                    print("\nŠo burtu tu jau esi minējis!\n")
                 else:
                     # Šāds burts vēl nav minēts
                     self.minetie_burti.append(minejums)
@@ -77,18 +83,21 @@ class Game:
                             self._uzvaras_pazinojums()
                         else:
                             # Visi burti vēl nav atminēti
+                            clearConsole()
                             print("\nTu uzminēji burtu!\n")
                     else:
                         # Šis burts nav vārdā
                         self.dzivibas -= 1
-                        print("\nDiemžēl tu neuzminēji, mēģini vēlreiz!")
+                        clearConsole()
+                        print("\nDiemžēl tu neuzminēji, mēģini vēlreiz!\n")
             else:
                 # Minējums ir vārds
                 # Pārbaudam vai šāds vārds jau ir minēts
                 if minejums in self.minetie_vardi:
                     # Šāds vārds jau ir minēts
-                    self.dzivibas -= 1
-                    print("\nŠo vārdu tu jau minēji!")
+                    #self.dzivibas -= 1
+                    clearConsole()
+                    print("\nŠo vārdu tu jau minēji!\n")
                 else:
                     # Šāds vārds vēl nav minēts
                     # Pievienojam jauno vārdu minēto vārdu sarakstam
@@ -104,19 +113,22 @@ class Game:
                         self.dzivibas -= 1
 
                         # Pārbaudām vai minētais vārds ir ar pareizu garumu
+                        clearConsole()
                         if len(self.vards) == len(minejums):
                             # Minētais vārds ir pareiza garuma
-                            print("\nDiemžēl tu neuzminēji!")
+                            print("\nDiemžēl tu neuzminēji!\n")
                         elif len(self.vards) > len(minejums):
                             # Minētais vārds ir par īsu
-                            print("\nIevadītais vārds ir par īsu!")
+                            print("\nIevadītais vārds ir par īsu!\n")
                         else:
                             # Minētais vārds ir par garu
-                            print("\nIevadītais vārds ir par garu!")
+                            print("\nIevadītais vārds ir par garu!\n")
+            
             
             # Pārbaudam vai spēlētājam vēl ir dzīvības
             if self.dzivibas < 1:
                 # Beidzās dzīvības
+                clearConsole()
                 print("\nDiemžēl, tev beidzās dzīvības un tu neizdevās uzminēt vārdu!\n")
                 print(f"Nezināmais vārds bija {self.vards}.")
                 print("\nGAME OVER\n")
