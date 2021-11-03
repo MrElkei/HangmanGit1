@@ -1,7 +1,7 @@
 
 
 # izveidojam jaunu klasi Game
-from helpers.clear import clearConsole
+from scripts.clear import clearConsole
 #123
 
 class Game:
