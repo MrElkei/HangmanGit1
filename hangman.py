@@ -9,6 +9,7 @@ import os
 #TODO Universāla ekrāna izvades funkcija
 #TODO Karātavu bildīte
 #TODO Animācijas ar taimeri
+#TODO Uzlabot vārdu atlases parametrus
 
 clearConsole()
 print("Sveicināti karātavās!\n")
