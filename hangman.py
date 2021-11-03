@@ -9,7 +9,7 @@ import os
 #TODO Universāla ekrāna izvades funkcija
 #TODO Karātavu bildīte
 #TODO Animācijas ar taimeri
-#TODO Uzlabot vārdu atlases parametrus
+#TODO Uzlabot vārdu atlases parametrus - sekojošu līdzskaņu un patskaņu skaits? dalījums zilbēs?
 
 clearConsole()
 print("Sveicināti karātavās!\n")
