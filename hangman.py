@@ -1,7 +1,7 @@
 # Veicam mūsu izveidotās klases Game ielādi
 # Pārliecinies, ka mapē gameplay ir izveidots tukšs vails ar nosaukumu __init__.py
 from gameplay.game import Game
-from helpers.clear import clearConsole
+from scripts.clear import clearConsole
 import random
 import os
 
