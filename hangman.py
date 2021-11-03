@@ -5,6 +5,10 @@ from scripts.clear import clearConsole
 import random
 import os
 
+#TODO ieviest cheatcodes
+#TODO Universāla ekrāna izvades funkcija
+#TODO Karātavu bildīte
+#TODO Animācijas ar taimeri
 
 clearConsole()
 print("Sveicināti karātavās!\n")
