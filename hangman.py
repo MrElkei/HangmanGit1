@@ -1,10 +1,15 @@
 # Veicam mūsu izveidotās klases Game ielādi
 # Pārliecinies, ka mapē gameplay ir izveidots tukšs vails ar nosaukumu __init__.py
 from gameplay.game import Game
-from helpers.clear import clearConsole
+from scripts.clear import clearConsole
 import random
 import os
 
+#TODO ieviest cheatcodes
+#TODO Universāla ekrāna izvades funkcija
+#TODO Karātavu bildīte
+#TODO Animācijas ar taimeri
+#TODO Uzlabot vārdu atlases parametrus - sekojošu līdzskaņu un patskaņu skaits? dalījums zilbēs?
 
 clearConsole()
 print("Sveicināti karātavās!\n")
