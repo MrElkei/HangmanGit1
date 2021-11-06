@@ -3,7 +3,7 @@
 # izveidojam jaunu klasi Game
 from scripts.clear import clearConsole
 #123
-
+from datetime import datetime 
 class Game:
     # veicam klases inicializāciju nododot tai minamo vārdu
     def __init__(self, vards):
@@ -31,11 +31,13 @@ class Game:
         clearConsole()
         print("\nApsveicu tu uzminēji vārdu!")
         print(f"Nezināmais vārds bija {self.vards}.\n")
+        time_elapsed = datetime.now() - start_time
+        print('Spēles laiks (hh:mm:ss.ms) {}'.format(time_elapsed))
 
     # Metode, kura satur spēles pamatloģiku
     def play(self):
-
         print(f"Uzmini vārdu, kas sastāv no {len(self.vards)} burtiem.\n")
+        start_time = datetime.now() 
 
         # Uzsākam spēles pamatciklu
         while not self.vards_atminets:
@@ -129,9 +131,16 @@ class Game:
             if self.dzivibas < 1:
                 # Beidzās dzīvības
                 clearConsole()
-                print("\nDiemžēl, tev beidzās dzīvības un tu neizdevās uzminēt vārdu!\n")
+                print("\nDiemžēl, tev beidzās dzīvības un neizdevās uzminēt vārdu!\n")
                 print(f"Nezināmais vārds bija {self.vards}.")
                 print("\nGAME OVER\n")
+                print(" +--+")
+                print(" O  |")
+                print("/|\ |")
+                print("/ \ |")
+                print("   ===")
+                time_elapsed = datetime.now() - start_time
+                print('Spēles laiks (hh:mm:ss) {}'.format(time_elapsed))
                 # Beidzam pamatcikla darbību
                 self.vards_atminets = True
                 
