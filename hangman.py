@@ -4,7 +4,7 @@ from gameplay.game import Game
 from scripts.clear import clearConsole
 import random
 import os
-
+import time
 #TODO ieviest cheatcodes
 #TODO Universāla ekrāna izvades funkcija
 #TODO Karātavu bildīte
@@ -13,8 +13,15 @@ import os
 
 clearConsole()
 print("Sveicināti karātavās!\n")
+print(" +--+")
+print(" O  |")
+print("/|\ |")
+print("/ \ |")
+print("   ===")
+time.sleep(1)
 deriga_ievade = False
 grūtibas_pakape = ""
+time.sleep(1)
 while not deriga_ievade:
     ievade = input("Izvēlies grūtības pakāpi 1, 2 vai 3\n1. Vienkāršie vārdi\n2. Vidēji grūti vārdi\n3. Grūti vārdi\n\nGrūtības pakāpe: ")
     if ievade == '1':
