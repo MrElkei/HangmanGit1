@@ -9,6 +9,7 @@ import time
 #TODO Animēts sveiciens
 #TODO Animēta atvadīšanās
 #TODO Uzlabot vārdu atlases parametrus - sekojošu līdzskaņu un patskaņu skaits? dalījums zilbēs?
+#TODO pārliecināties ka termināls ir pietiekami plats un palielināt to ja nepieciešams
 
 clearConsole()
 print("Sveicināti karātavās!\n")
