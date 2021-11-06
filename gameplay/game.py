@@ -1,7 +1,6 @@
 
 
 # izveidojam jaunu klasi Game
-from os import truncate
 import random
 from scripts.clear import clearConsole
 #123
