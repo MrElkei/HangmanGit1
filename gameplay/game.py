@@ -122,3 +122,4 @@ class Game:
                 print("\nGAME OVER\n")
                 # Beidzam pamatcikla darbību
                 self.vards_atminets = True
+                
