@@ -6,9 +6,8 @@ import random
 import os
 import time
 #TODO ieviest cheatcodes
-#TODO Universāla ekrāna izvades funkcija
-#TODO Karātavu bildīte
-#TODO Animācijas ar taimeri
+#TODO Animēts sveiciens
+#TODO Animēta atvadīšanās
 #TODO Uzlabot vārdu atlases parametrus - sekojošu līdzskaņu un patskaņu skaits? dalījums zilbēs?
 
 clearConsole()

@@ -1,5 +1,4 @@
 from scripts.clear import clearConsole
-import os
 
 
 def refreshDisplay():
@@ -34,9 +33,7 @@ def normalizeRows(list, rows, cols):
             c = cols - len(line)
             line = line + " " * c
         elif len(line) > cols:
-            pass
-            #print(cols)
-            #line = line[0,cols]
+            line = line[0:cols]
         list[l] = line
     return list
 

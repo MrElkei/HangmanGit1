@@ -18,6 +18,110 @@ class Game:
         self.vards_atminets = False
         self.papildiespeja = False
 
+        # Taimera mainīgie lielumi
+        self.start_time = 0
+
+        # Karātavu bilde
+        self.karatavas = ['''
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ / \\  |
+      |
+=======
+''','''
+  +---+
+  |   |
+  O   |
+ /|\\  |
+ /    |
+      |
+=======
+''','''
+  +---+
+  |   |
+  O   |
+ /|\\  |
+      |
+      |
+=======
+''','''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=======
+''','''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=======
+''','''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=======
+''','''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=======
+''']
+        
+        # Displeja izvades parametri
+        self.left_column_max = 7
+        self.middle_column_max = 77
+        self.right_column_max = 30
+        self.left_column = []
+        self.middle_column = ["","","","","","",""]
+        self.right_column = ["","","","","","",""]
+
+    # Displeja izvades menedžments
+    def _refreshDisplay(self):
+        # Atrast maksimālo rindu skaitu displeja reģionos
+        max_rows = len(self.left_column)
+        if len(self.middle_column) > max_rows:
+            max_rows = len(self.middle_column)
+        if len(self.right_column) > max_rows:
+            max_rows = len(self.right_column)
+
+        # Normalizēt attēlojamos displeja reģionus
+        self.left_column = self._normalizeRows(self.left_column, max_rows, self.left_column_max)
+        self.middle_column = self._normalizeRows(self.middle_column, max_rows, self.middle_column_max)
+        self.right_column = self._normalizeRows(self.right_column, max_rows, self.right_column_max)
+
+        # Attēlot displeju
+        clearConsole()
+        for n in range(0, max_rows):
+            print(f'{self.left_column[n]}   {self.middle_column[n]} | {self.right_column[n]}')
+
+    # Izlīdzina līniju garumu un līniju skaitu sarakstā
+    def _normalizeRows(self, list, rows, cols):
+        if len(list) < rows:
+            i = rows - len(list)
+            list += [' '] * i
+        for l in range(0, len(list)):
+            line = str(list[l])
+            if len(line) < cols:
+                c = cols - len(line)
+                line = line + " " * c
+            elif len(line) > cols:
+                line = line[0:cols]
+            list[l] = line
+        return list
+
     # Metode, kura nodrošina neuzminēto burtu aiklāšanu ar "-" simboli
     def _aizklata_varda_generators(self):
         self.aizklats_vards = ""
@@ -30,35 +134,86 @@ class Game:
 
     # Metode, kura izvada uzvaras paziņojumu
     def _uzvaras_pazinojums(self):
-        clearConsole()
-        print("\nApsveicu tu uzminēji vārdu!")
-        print(f"Nezināmais vārds bija {self.vards}.\n")
-        time_elapsed = datetime.now() - start_time
-        print('Spēles laiks (hh:mm:ss.ms) {}'.format(time_elapsed))
+        time_elapsed = datetime.now() - self.start_time
+        self.left_column = self.karatavas[self.dzivibas].splitlines()
+
+        self.middle_column[0] = f"        __  ________    _____    ____  ___    __"
+        self.middle_column[1] = f"       / / / /__  / |  / /   |  / __ \/   |  / /"
+        self.middle_column[2] = f"      / / / /  / /| | / / /| | / /_/ / /| | / / "
+        self.middle_column[3] = f"     / /_/ /  / /_| |/ / ___ |/ _, _/ ___ |/_/  "
+        self.middle_column[4] = f"     \____/  /____/___/_/  |_/_/ |_/_/  |_(_)   "
+        self.middle_column[5] = f""
+        self.middle_column[6] = f"Apsveicu tu uzminēji vārdu {self.vards}. Spēles laks (hh:mm:ss) {time_elapsed}"
+
+        self.right_column[1] = f"   Dzīvības: {self.dzivibas}"
+        self.right_column[3] = f"   Minēto burtu sk.: {len(self.minetie_burti)}"
+        self.right_column[4] = f"   Minēto vārdu sk.: {len(self.minetie_vardi)}"
+
+        self._refreshDisplay()
+
+    # Metode, kura izvada zaudējuma paziņojumu
+    def _game_over_pazinojums(self):
+        time_elapsed = datetime.now() - self.start_time
+        self.left_column = self.karatavas[self.dzivibas].splitlines()
+
+        self.middle_column[0] = f"   _________    __  _________   ____ _    ____________ "
+        self.middle_column[1] = f"  / ____/   |  /  |/  / ____/  / __ \ |  / / ____/ __ \\"
+        self.middle_column[2] = f" / / __/ /| | / /|_/ / __/    / / / / | / / __/ / /_/ /"
+        self.middle_column[3] = f"/ /_/ / ___ |/ /  / / /___   / /_/ /| |/ / /___/ _, _/ "
+        self.middle_column[4] = f"\____/_/  |_/_/  /_/_____/   \____/ |___/_____/_/ |_|  "
+        self.middle_column[5] = f""
+        self.middle_column[6] = f"Nezināmais vārds bija {self.vards}. Spēles laks (hh:mm:ss) {time_elapsed}"
+
+        self.right_column[1] = f"   Dzīvības: {self.dzivibas}"
+        self.right_column[3] = f"   Minēto burtu sk.: {len(self.minetie_burti)}"
+        self.right_column[4] = f"   Minēto vārdu sk.: {len(self.minetie_vardi)}"
+
+        self._refreshDisplay()
+
 
     # Metode, kura satur spēles pamatloģiku
     def play(self):
-        print(f"Uzmini vārdu, kas sastāv no {len(self.vards)} burtiem.\n")
-        start_time = datetime.now() 
+        # Uzsākam laika atskaiti
+        self.start_time = datetime.now()
+
+        # Izveidojam pirmo displeja izvadi
+        self.middle_column[0] = f"   --== Laipni lūgti karātāvās! ==--"
+        self.middle_column[2] = f"Uzmini vārdu, kas sastāv no {len(self.vards)} burtiem."
+        
+        self.right_column[0] = f"Statistika:"
+        self.right_column[2] = f"   Vārda  garums: {len(self.vards)}"
 
         # Uzsākam spēles pamatciklu
         while not self.vards_atminets:
             # Izdrukā atlikušo dzīvību skaitu un minēšanas progresu
-            print(f"Tev vēl ir palikušas {self.dzivibas} dzīvības.\n")
-            print(f"Tavs progress: {self.aizklats_vards}\n")
+            self.left_column = self.karatavas[self.dzivibas].splitlines()
+            self.middle_column[6] = f"Tavs progress: {self.aizklats_vards}"
+            self.right_column[1] = f"   Dzīvības: {self.dzivibas}"
+            self.right_column[3] = f"   Minēto burtu sk.: {len(self.minetie_burti)}"
+            self.right_column[4] = f"   Minēto vārdu sk.: {len(self.minetie_vardi)}"
+
+            self._refreshDisplay()
 
             # Burta vai vārda ievade un ievades validācija
             deriga_ievade = False
             minejums = ""
             while not deriga_ievade:
-                minejums = input("Ieraksti burtu vai vārdu: ")
+                minejums = input("\nIeraksti burtu vai vārdu: ")
                 if minejums.isalpha():
                     # Minējums sastāv tikai no burtiem
                     minejums = minejums.upper()
                     deriga_ievade = True
+                    self.middle_column[2] = ""
+                    self.middle_column[3] = ""
+                    self.middle_column[4] = ""
+                    self.middle_column[5] = ""
                 else:
                     # Nederīgs minējums
-                    print("\nNetika ievadīts burts vai vārds. Lūdzu mēģini vēlreiz.")
+                    self.middle_column[2] = "Netika ievadīts burts vai vārds. Lūdzu mēģini vēlreiz."
+                    self.middle_column[3] = ""
+                    self.middle_column[4] = ""
+                    self.middle_column[5] = ""
+                    self._refreshDisplay()
             
             # Noskaidrojam minējuma garumu, t.i. vai ir minēts burts vai vārds
             if len(minejums) == 1:
@@ -66,9 +221,8 @@ class Game:
                 # Pārbaudam vai šāds burts jau ir minēts
                 if minejums in self.minetie_burti:
                     # Šāds burts jau ir minēts
-                    #self.dzivibas -= 1
-                    clearConsole()
-                    print("\nŠo burtu tu jau esi minējis!\n")
+                    self.middle_column[2] = "Šo burtu tu jau esi minējis!"
+                    self.middle_column[3] = "Esi uzmanīgāks!"
                 else:
                     # Šāds burts vēl nav minēts
                     self.minetie_burti.append(minejums)
@@ -87,21 +241,19 @@ class Game:
                             self._uzvaras_pazinojums()
                         else:
                             # Visi burti vēl nav atminēti
-                            clearConsole()
-                            print("\nTu uzminēji burtu!\n")
+                            self.middle_column[2] = "Tu uzminēji burtu!"
                     else:
                         # Šis burts nav vārdā
                         self.dzivibas -= 1
-                        clearConsole()
-                        print("\nDiemžēl tu neuzminēji, mēģini vēlreiz!\n")
+                        self.middle_column[2] = "Diemžēl tu neuzminēji, mēģini vēlreiz!"
+                        self.middle_column[3] = f'Minamajā vārdā nav burta "{minejums}"'
             else:
                 # Minējums ir vārds
                 # Pārbaudam vai šāds vārds jau ir minēts
                 if minejums in self.minetie_vardi:
                     # Šāds vārds jau ir minēts
-                    #self.dzivibas -= 1
-                    clearConsole()
-                    print("\nŠo vārdu tu jau minēji!\n")
+                    self.middle_column[2] = "Šo vārdu tu jau esi minējis!"
+                    self.middle_column[3] = "Esi uzmanīgāks!"
                 else:
                     # Šāds vārds vēl nav minēts
                     # Pievienojam jauno vārdu minēto vārdu sarakstam
@@ -117,41 +269,30 @@ class Game:
                         self.dzivibas -= 1
 
                         # Pārbaudām vai minētais vārds ir ar pareizu garumu
-                        clearConsole()
                         if len(self.vards) == len(minejums):
                             # Minētais vārds ir pareiza garuma
-                            print("\nDiemžēl tu neuzminēji!\n")
+                            self.middle_column[2] = "Diemžēl tu neuzminēji!"
                         elif len(self.vards) > len(minejums):
                             # Minētais vārds ir par īsu
-                            print("\nIevadītais vārds ir par īsu!\n")
+                            self.middle_column[2] = "Ievadītais vārds ir par īsu!"
                         else:
                             # Minētais vārds ir par garu
-                            print("\nIevadītais vārds ir par garu!\n")
-            
+                            self.middle_column[2] = "Ievadītais vārds ir par garu!"
             
             # Pārbaudam vai spēlētājam vēl ir dzīvības
             if self.dzivibas < 1:
                 # Beidzās dzīvības
-                clearConsole()
-                print("\nDiemžēl, tev beidzās dzīvības un neizdevās uzminēt vārdu!\n")
-                print(f"Nezināmais vārds bija {self.vards}.")
-                print("\nGAME OVER\n")
-                print(" +--+")
-                print(" O  |")
-                print("/|\ |")
-                print("/ \ |")
-                print("   ===")
-                time_elapsed = datetime.now() - start_time
-                print('Spēles laiks (hh:mm:ss) {}'.format(time_elapsed))
-                # Beidzam pamatcikla darbību
                 self.vards_atminets = True
+                self._game_over_pazinojums()
 
             # Atlaujam atvert kadu no neuzminetajiem burtiem, ja ir palikusi 1 dziviba
             # Izmantojot papildiespeju tiek izmantots nejausi izvelets burts, kas nav atminets
             if self.dzivibas == 1 and self.papildiespeja == False:
-                 
-                print("\nVai gribi izmantot papildiespeju un atklat vienu burtu?\n")
-                atbilde = input("Vai gribi izmantot papildiespeju un atklat vienu burtu (jā / nē): ").upper()
+                self.middle_column[4] = "Ak vai tev palika tikai viena dzīvība."
+                self.middle_column[5] = "Lai tev palīdzētu, sniegsim tev papildiespēju!"
+                self._refreshDisplay()
+
+                atbilde = input("\nVai gribi izmantot papildiespeju un atklat vienu burtu (jā / nē): ").upper()
                 if atbilde in ["JĀ", "JA", "J", "Yes", "Y"]:
                     self.papildiespeja = True
                     neuzminetie_burti = []
@@ -160,9 +301,11 @@ class Game:
                             neuzminetie_burti.append(burts)
                     neuzminetie_burti = list(set(neuzminetie_burti))
                     atklatais_burts = random.choice(neuzminetie_burti)
-                    print(f"\nSis vards satur burtu {atklatais_burts}")
+                    self.middle_column[2] = f'Nezināmais vārds satur burtu "{atklatais_burts}".'
+                    self.middle_column[3] = ""
+                    self.middle_column[4] = ""
+                    self.middle_column[5] = ""
                 else:
                     # Papildiespeja netika izmantota
-                    print("\nTev ir palikusi pedeja dziviba. Sanemies!")
-
-            # Atlaujam iziet no speles jebkura bridi
+                    self.middle_column[4] = f'Tev ir palikusi pēdējā dzīvība. Saņemies!'
+                    self.middle_column[5] = ""
