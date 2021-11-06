@@ -1,6 +1,7 @@
 
 
 # izveidojam jaunu klasi Game
+import random
 from scripts.clear import clearConsole
 #123
 from datetime import datetime 
@@ -15,6 +16,7 @@ class Game:
         self.uzminetie_burti = []
         self.aizklats_vards = self._aizklata_varda_generators()
         self.vards_atminets = False
+        self.papildiespeja = False
 
     # Metode, kura nodrošina neuzminēto burtu aiklāšanu ar "-" simboli
     def _aizklata_varda_generators(self):
@@ -143,4 +145,24 @@ class Game:
                 print('Spēles laiks (hh:mm:ss) {}'.format(time_elapsed))
                 # Beidzam pamatcikla darbību
                 self.vards_atminets = True
-                
+
+            # Atlaujam atvert kadu no neuzminetajiem burtiem, ja ir palikusi 1 dziviba
+            # Izmantojot papildiespeju tiek izmantots nejausi izvelets burts, kas nav atminets
+            if self.dzivibas == 1 and self.papildiespeja == False:
+                 
+                print("\nVai gribi izmantot papildiespeju un atklat vienu burtu?\n")
+                atbilde = input("Vai gribi izmantot papildiespeju un atklat vienu burtu (jā / nē): ").upper()
+                if atbilde in ["JĀ", "JA", "J", "Yes", "Y"]:
+                    self.papildiespeja = True
+                    neuzminetie_burti = []
+                    for burts in self.vards:
+                        if burts not in self.aizklats_vards:
+                            neuzminetie_burti.append(burts)
+                    neuzminetie_burti = list(set(neuzminetie_burti))
+                    atklatais_burts = random.choice(neuzminetie_burti)
+                    print(f"\nSis vards satur burtu {atklatais_burts}")
+                else:
+                    # Papildiespeja netika izmantota
+                    print("\nTev ir palikusi pedeja dziviba. Sanemies!")
+
+            # Atlaujam iziet no speles jebkura bridi
