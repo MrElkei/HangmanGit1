@@ -307,5 +307,7 @@ class Game:
                     self.middle_column[5] = ""
                 else:
                     # Papildiespeja netika izmantota
-                    self.middle_column[4] = f'Tev ir palikusi pēdējā dzīvība. Saņemies!'
+                    self.middle_column[2] = f'Tev ir palikusi pēdējā dzīvība. Saņemies!'
+                    self.middle_column[3] = ""
+                    self.middle_column[4] = ""
                     self.middle_column[5] = ""
