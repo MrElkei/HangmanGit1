@@ -73,7 +73,7 @@ while words_list and vai_turpināt:
     game.play()
 
     # Pārliecināties vai turpināt spēli
-    atbilde = input("Vai turpināt spēli (jā / nē): ").upper()
+    atbilde = input("\nVai turpināt spēli (jā / nē): ").upper()
     if atbilde not in ["JĀ", "JA", "J"]:
         vai_turpināt = False
         
