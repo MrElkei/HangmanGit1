@@ -28,8 +28,11 @@ grutibas_pakape = ""
 while not deriga_ievade:
     try:
         ievade = input("Izvēlies grūtības pakāpi 1, 2 vai 3\n\n1. Vienkāršie vārdi\n2. Vidēji grūti vārdi\n3. Grūti vārdi\n\nGrūtības pakāpe: ")
-    except:
-        print('Saņemta "EOFError" kļūda!')
+    except EOFError:
+        print('\nSaņemta "EOFError" kļūda!')
+        time.sleep(3)
+    except KeyboardInterrupt:
+        print('\nPaldies par spēli gaidīsim tevi atkal!')
         sys.exit()
     else:
         if ievade == '1':
@@ -87,8 +90,11 @@ else:
             # Pārliecināties vai turpināt spēli
             try:
                 atbilde = input("\nVai turpināt spēli (jā / nē): ").upper()
-            except:
-                print('Saņemta "EOFError" kļūda!')
+            except EOFError:
+                print('\nSaņemta "EOFError" kļūda!')
+                time.sleep(3)
+            except KeyboardInterrupt:
+                print('\nPaldies par spēli gaidīsim tevi atkal!')
                 sys.exit()
             else:
                 if atbilde not in ["JĀ", "JA", "J"]:

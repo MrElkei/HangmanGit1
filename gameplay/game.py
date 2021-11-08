@@ -2,6 +2,7 @@
 import random
 from scripts.clear import clearConsole
 import time
+import sys
 
 from datetime import datetime 
 class Game:
@@ -207,6 +208,9 @@ class Game:
                     self.middle_column[4] = ""
                     self.middle_column[5] = ""
                     self._refreshDisplay()
+                except KeyboardInterrupt:
+                    print('\nPaldies par spēli gaidīsim tevi atkal!')
+                    sys.exit()
                 else:
                     if minejums.isalpha():
                         # Minējums sastāv tikai no burtiem
@@ -310,6 +314,9 @@ class Game:
                     self.middle_column[5] = ""
                     self._refreshDisplay()
                     time.sleep(3)
+                except KeyboardInterrupt:
+                    print('\nPaldies par spēli gaidīsim tevi atkal!')
+                    sys.exit()
                 else:
                     if atbilde in ["JĀ", "JA", "J", "Yes", "Y"]:
                         self.papildiespeja = True
