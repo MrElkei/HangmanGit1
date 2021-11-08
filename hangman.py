@@ -5,6 +5,7 @@ from scripts.clear import clearConsole
 import random
 import os
 import time
+import sys
 #TODO ieviest cheatcodes
 #TODO Animēts sveiciens
 #TODO Animēta atvadīšanās
@@ -29,6 +30,7 @@ while not deriga_ievade:
         ievade = input("Izvēlies grūtības pakāpi 1, 2 vai 3\n\n1. Vienkāršie vārdi\n2. Vidēji grūti vārdi\n3. Grūti vārdi\n\nGrūtības pakāpe: ")
     except:
         print('Saņemta "EOFError" kļūda!')
+        sys.exit()
     else:
         if ievade == '1':
             grūtibas_pakape = 'easy_words.txt'
@@ -87,6 +89,7 @@ else:
                 atbilde = input("\nVai turpināt spēli (jā / nē): ").upper()
             except:
                 print('Saņemta "EOFError" kļūda!')
+                sys.exit()
             else:
                 if atbilde not in ["JĀ", "JA", "J"]:
                     vai_turpināt = False
