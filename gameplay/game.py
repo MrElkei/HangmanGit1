@@ -86,8 +86,8 @@ class Game:
         self.middle_column_max = 77
         self.right_column_max = 30
         self.left_column = []
-        self.middle_column = ["","","","","","",""]
-        self.right_column = ["","","","","","",""]
+        self.middle_column = ["","","","","","","",""]
+        self.right_column = ["","","","","","","",""]
 
     # Displeja izvades menedžments
     def _refreshDisplay(self):
@@ -171,6 +171,24 @@ class Game:
 
         self._refreshDisplay()
 
+    def _game_exit(self):
+        time_elapsed = datetime.now() - self.start_time
+        self.left_column = self.karatavas[self.dzivibas].splitlines()
+
+        self.middle_column[0] = f"   __  _______      ____  __________  _____   ____   __"
+        self.middle_column[1] = f"  / / / /__  /     / __ \/ ____/ __ \/__  /  /  _/  / /"
+        self.middle_column[2] = f" / / / /  / /     / /_/ / __/ / / / /  / /   / /   / / "
+        self.middle_column[3] = f"/ /_/ /  / /__   / _, _/ /___/ /_/ /  / /___/ /   /_/  "
+        self.middle_column[4] = f"\____/  /____/  /_/ |_/_____/_____/  /____/___/  (_)   "
+        self.middle_column[5] = f""
+        self.middle_column[6] = f"Nezināmais vārds bija {self.vards}. Spēles laks (hh:mm:ss) {time_elapsed}"
+        self.middle_column[7] = f"Paldies par spēli gaidīsim tevi atkal!"
+
+        self.right_column[1] = f"   Dzīvības: {self.dzivibas}"
+        self.right_column[3] = f"   Minēto burtu sk.: {len(self.minetie_burti)}"
+        self.right_column[4] = f"   Minēto vārdu sk.: {len(self.minetie_vardi)}"
+
+        self._refreshDisplay()
 
     # Metode, kura satur spēles pamatloģiku
     def play(self):
@@ -183,7 +201,8 @@ class Game:
         
         self.right_column[0] = f"Statistika:"
         self.right_column[2] = f"   Vārda  garums: {len(self.vards)}"
-        self.right_column[6] = f"Grūtības pakāpe: {self.grutibas_pakape}"
+        self.right_column[6] = f"Grūtības pakāpe: {self.grutibas_pakape}."
+        self.right_column[7] = f"Raksti EXIT, lai izietu."
 
         # Uzsākam spēles pamatciklu
         while not self.vards_atminets:
@@ -209,7 +228,7 @@ class Game:
                     self.middle_column[5] = ""
                     self._refreshDisplay()
                 except KeyboardInterrupt:
-                    print('\nPaldies par spēli gaidīsim tevi atkal!')
+                    self._game_exit()
                     sys.exit()
                 else:
                     if minejums.isalpha():
@@ -315,7 +334,7 @@ class Game:
                     self._refreshDisplay()
                     time.sleep(3)
                 except KeyboardInterrupt:
-                    print('\nPaldies par spēli gaidīsim tevi atkal!')
+                    self._game_exit()
                     sys.exit()
                 else:
                     if atbilde in ["JĀ", "JA", "J", "Yes", "Y"]:
