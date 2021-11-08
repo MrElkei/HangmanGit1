@@ -10,6 +10,7 @@ import time
 #TODO Animēta atvadīšanās
 #TODO Uzlabot vārdu atlases parametrus - sekojošu līdzskaņu un patskaņu skaits? dalījums zilbēs?
 #TODO pārliecināties ka termināls ir pietiekami plats un palielināt to ja nepieciešams
+#TODO pārliecināties, ka saraksts nesatur vienādus vārdus
 
 clearConsole()
 print("Sveicināti karātavās!\n")
@@ -22,26 +23,28 @@ time.sleep(1)
 deriga_ievade = False
 grūtibas_pakape = ""
 time.sleep(1)
+grutibas_pakape = ""
 while not deriga_ievade:
-    ievade = input("Izvēlies grūtības pakāpi 1, 2 vai 3\n1. Vienkāršie vārdi\n2. Vidēji grūti vārdi\n3. Grūti vārdi\n\nGrūtības pakāpe: ")
-    if ievade == '1':
-        grūtibas_pakape = 'easy_words.txt'
-        deriga_ievade = True
-        clearConsole()
-        print('Tu izvēlējies vieglo vārdu sarakstu.')
-    elif ievade == '2':
-        grūtibas_pakape = 'medium_words.txt'
-        deriga_ievade = True
-        clearConsole()
-        print('Tu izvēlējies vidēji grūto vārdu sarakstu.')
-    elif ievade == '3':
-        grūtibas_pakape = 'hard_words.txt'
-        deriga_ievade = True
-        clearConsole()
-        print('Tu izvēlējies grūto vārdu sarakstu.')
+    try:
+        ievade = input("Izvēlies grūtības pakāpi 1, 2 vai 3\n\n1. Vienkāršie vārdi\n2. Vidēji grūti vārdi\n3. Grūti vārdi\n\nGrūtības pakāpe: ")
+    except:
+        print('Saņemta "EOFError" kļūda!')
     else:
-        clearConsole()
-        print("Nepareizi izvēlēta grūtības pakāpe\n")
+        if ievade == '1':
+            grūtibas_pakape = 'easy_words.txt'
+            deriga_ievade = True
+            grutibas_pakape = "viegla"
+        elif ievade == '2':
+            grūtibas_pakape = 'medium_words.txt'
+            deriga_ievade = True
+            grutibas_pakape = "vidēja"
+        elif ievade == '3':
+            grūtibas_pakape = 'hard_words.txt'
+            deriga_ievade = True
+            grutibas_pakape = "grūta"
+        else:
+            clearConsole()
+            print("Nepareizi izvēlēta grūtības pakāpe\n")
 
 # Izveido absolūtu ceļu līdz words.txt failam
 # 1. Atrod skripta atrašanās vietu
@@ -50,30 +53,41 @@ script_dir = os.path.dirname(os.path.realpath(__file__))
 words_file = os.path.join(script_dir, 'data', grūtibas_pakape)
 
 # Lasām vārdu sarakstu, kā tekstu
-with open(words_file, 'r', encoding='utf-8') as file:
-	words_str = file.read()
+try:
+    with open(words_file, 'r', encoding='utf-8') as file:
+        words_str = file.read()
+except FileNotFoundError:
+    print(f'\nDiemžēl neizdevās nolasīt "{words_file}" failu.')
+else:
+    # Pārveidojam vārdu sarakstu no teksta formāta uz List formātu
+    words_list = words_str.splitlines()
 
-# Pārveidojam vārdu sarakstu no teksta formāta uz List formātu
-# TODO pārliecināties, ka saraksts nesatur vienādus vārdus
-words_list = words_str.split('\n') # use .splitline() for universal code
+    # Sajauc vārdu secību
+    random.shuffle(words_list)
 
-# Sajauc vārdu secību
-random.shuffle(words_list)
+    # Izveido karodziņu spēles turpinājumam
+    vai_turpināt = True
 
-# Izveido karodziņu spēles turpinājumam
-vai_turpināt = True
-
-# Uzsāk spēles pamatciklu
-while words_list and vai_turpināt:
-    
-    # Izveidojam jaunu spēles instanci un nododam tai mināmo vārdu
-    game = Game(words_list.pop())
-
-    # Palaižam spēli
-    game.play()
-
-    # Pārliecināties vai turpināt spēli
-    atbilde = input("\nVai turpināt spēli (jā / nē): ").upper()
-    if atbilde not in ["JĀ", "JA", "J"]:
-        vai_turpināt = False
+    # Uzsāk spēles pamatciklu
+    while words_list and vai_turpināt:
         
+        # Izveidojam jaunu spēles instanci un nododam tai mināmo vārdu
+        try:
+            game = Game(words_list.pop(), grutibas_pakape)
+        except IndexError:
+            print(f'\nPaldies par izturību! Visi vārdi šajā grūtības pakāpē ir jau minēti!')
+            print(f'Tava izvēlētā gŗutības pakāpe bija: {grutibas_pakape}')
+            vai_turpināt = False
+        else:
+            # Palaižam spēli
+            game.play()
+
+            # Pārliecināties vai turpināt spēli
+            try:
+                atbilde = input("\nVai turpināt spēli (jā / nē): ").upper()
+            except:
+                print('Saņemta "EOFError" kļūda!')
+            else:
+                if atbilde not in ["JĀ", "JA", "J"]:
+                    vai_turpināt = False
+            
