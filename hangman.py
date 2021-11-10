@@ -7,11 +7,16 @@ import os
 import time
 import sys
 #TODO ieviest cheatcodes
+#TODO exit
 #TODO Animēts sveiciens
 #TODO Animēta atvadīšanās
 #TODO Uzlabot vārdu atlases parametrus - sekojošu līdzskaņu un patskaņu skaits? dalījums zilbēs?
 #TODO pārliecināties ka termināls ir pietiekami plats un palielināt to ja nepieciešams
+#TODO jauan display klase
+#TODO Krāsu izvade?
 #TODO pārliecināties, ka saraksts nesatur vienādus vārdus
+#TODO Highscore
+#TODO Tezaurus skaidrojums
 
 clearConsole()
 print("Sveicināti karātavās!\n")
