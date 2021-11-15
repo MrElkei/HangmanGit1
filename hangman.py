@@ -62,7 +62,7 @@ while not deriga_ievade:
 # 1. Atrod skripta atrašanās vietu
 script_dir = os.path.dirname(os.path.realpath(__file__))
 # 2. Pievieno words.txt atrašanās vietu
-words_file = os.path.join(script_dir, 'data', grūtibas_pakape)
+words_file = os.path.join(script_dir, 'data', grutibas_pakape_file)
 
 # Lasām vārdu sarakstu, kā tekstu
 try:
