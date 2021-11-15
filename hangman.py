@@ -2,59 +2,61 @@
 # Pārliecinies, ka mapē gameplay ir izveidots tukšs vails ar nosaukumu __init__.py
 from gameplay.game import Game
 from scripts.clear import clearConsole
+from scripts.display import Display
+from animations.animationHangman import AnimationHangman
+from animations.animationWelcome import AnimationWelcome
 import random
 import os
 import time
 import sys
 #TODO ieviest cheatcodes
 #TODO exit
-#TODO Animēts sveiciens
 #TODO Animēta atvadīšanās
 #TODO Uzlabot vārdu atlases parametrus - sekojošu līdzskaņu un patskaņu skaits? dalījums zilbēs?
-#TODO pārliecināties ka termināls ir pietiekami plats un palielināt to ja nepieciešams
-#TODO jauan display klase
 #TODO Krāsu izvade?
 #TODO pārliecināties, ka saraksts nesatur vienādus vārdus
 #TODO Highscore
 #TODO Tezaurus skaidrojums
 
-clearConsole()
-print("Sveicināti karātavās!\n")
-print(" +--+")
-print(" O  |")
-print("/|\ |")
-print("/ \ |")
-print("   ===")
-time.sleep(1)
+display = Display()
+display.updateLine(2, 1, "Grūtības pakāpes:")
+display.updateLine(2, 2, "    1. viegla")
+display.updateLine(2, 3, "    2. vidēja")
+display.updateLine(2, 4, "    3. grūta")
+display.animate(left_colums_animation=AnimationHangman(), middle_column_animation=AnimationWelcome())
+
+display.updateLine(1, 7, "Laipni lūdzam karātavās! Izvēlies grūtības pakāpi 1, 2 vai 3")
+display.refresh()
 deriga_ievade = False
-grūtibas_pakape = ""
-time.sleep(1)
+grutibas_pakape_file = ""
 grutibas_pakape = ""
 while not deriga_ievade:
     try:
-        ievade = input("Izvēlies grūtības pakāpi 1, 2 vai 3\n\n1. Vienkāršie vārdi\n2. Vidēji grūti vārdi\n3. Grūti vārdi\n\nGrūtības pakāpe: ")
+        ievade = input("\nGrūtības pakāpe: ")
     except EOFError:
-        print('\nSaņemta "EOFError" kļūda!')
+        display.updateLine(1, 7, "Saņemta \"EOFError\" kļūda!")
+        display.refresh()
         time.sleep(3)
     except KeyboardInterrupt:
-        print('\nPaldies par spēli gaidīsim tevi atkal!')
+        display.updateLine(1, 7, "Paldies par spēli gaidīsim tevi atkal!")
+        display.refresh()
         sys.exit()
     else:
         if ievade == '1':
-            grūtibas_pakape = 'easy_words.txt'
+            grutibas_pakape_file = 'easy_words.txt'
             deriga_ievade = True
             grutibas_pakape = "viegla"
         elif ievade == '2':
-            grūtibas_pakape = 'medium_words.txt'
+            grutibas_pakape_file = 'medium_words.txt'
             deriga_ievade = True
             grutibas_pakape = "vidēja"
         elif ievade == '3':
-            grūtibas_pakape = 'hard_words.txt'
+            grutibas_pakape_file = 'hard_words.txt'
             deriga_ievade = True
             grutibas_pakape = "grūta"
         else:
-            clearConsole()
-            print("Nepareizi izvēlēta grūtības pakāpe\n")
+            display.updateLine(1, 7, "Nepareizi izvēlēta grūtības pakāpe! Izvēlies 1, 2 vai 3")
+            display.refresh()
 
 # Izveido absolūtu ceļu līdz words.txt failam
 # 1. Atrod skripta atrašanās vietu
