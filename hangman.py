@@ -23,7 +23,10 @@ display.updateLine(2, 1, "Grūtības pakāpes:")
 display.updateLine(2, 2, "    1. viegla")
 display.updateLine(2, 3, "    2. vidēja")
 display.updateLine(2, 4, "    3. grūta")
-display.animate(left_colums_animation=AnimationHangman(), middle_column_animation=AnimationWelcome())
+for n in range(0, 3):
+    display.animate(left_colums_animation=AnimationHangman())
+
+display.animate(middle_column_animation=AnimationWelcome())
 
 display.updateLine(1, 7, "Laipni lūdzam karātavās! Izvēlies grūtības pakāpi 1, 2 vai 3")
 display.refresh()
