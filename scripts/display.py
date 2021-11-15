@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 
 class Display:
 
@@ -23,18 +24,12 @@ class Display:
 
     # ierakstīt tekstu noteiktā displeja kolonā un rindā
     def updateLine(self, column = 0, index = 0, text = ""):
-        try:
-            if len(self.display[column]) < index:
-                i = index - len(self.display[column]) + 1
-                b = ['' for n in range(0, i)]
-                self.display[column].extend(b)
-            
-            self.display[column][index] = text
-
-        except IndexError as msg:
-            print('updateLine metode saskārās ar IndexError, visticamāk column vērtība ir lielāka par 2')
-            print(msg)
-            sys.exit()
+        if len(self.display[column]) < index:
+            i = index - len(self.display[column]) + 1
+            b = ['' for n in range(0, i)]
+            self.display[column].extend(b)
+        
+        self.display[column][index] = text
 
     # Noskaidrojam maksimālo rindu skaitu displeja kolonās
     def _get_max_row_count(self):
@@ -55,13 +50,7 @@ class Display:
 
     # ierakstīt noteiktas kolonas saturu kā sarakstu
     def updateCulumn(self, column = 0, new_list = []):
-        try:
             self.display[column] = new_list
-
-        except IndexError as msg:
-            print('updateCulumn metode saskārās ar IndexError, visticamāk column vērtība ir lielāka par 2')
-            print(msg)
-            sys.exit()
 
     # Izlīdzina līniju garumu un līniju skaitu displejā
     def _normalize(self):
@@ -92,9 +81,64 @@ class Display:
             command = 'cls'
         os.system(command)
 
+    def _printDysplay(self):
+        for n in range(0, len(self.display[0])):
+            print(f'{self.display[0][n]}{self.delim_1}{self.display[1][n]}{self.delim_2}{self.display[2][n]}')
+
     # Atjaunina displeja izvadi
     def refresh(self):
         self._normalize()
         self.clearConsole()
-        for n in range(0, len(self.display[0])):
-            print(f'{self.display[0][n]}{self.delim_1}{self.display[1][n]}{self.delim_2}{self.display[2][n]}')
+        self._printDysplay()
+
+    def animate(self, left_colums_animation = None, middle_column_animation = None, right_column_animation = None, framerate = 9):
+        # Ielasa pirmo kadru katrā animācijā
+        max_frames = 0
+        if left_colums_animation is not None:
+            self.updateCulumn(0, left_colums_animation.getFrame(0))
+            if max_frames < left_colums_animation.frame_count:
+                max_frames = left_colums_animation.frame_count
+        if middle_column_animation is not None:
+            self.updateCulumn(1, middle_column_animation.getFrame(0))
+            if max_frames < middle_column_animation.frame_count:
+                max_frames = middle_column_animation.frame_count
+        if right_column_animation is not None:
+            self.updateCulumn(2, right_column_animation.getFrame(0))
+            if max_frames < right_column_animation.frame_count:
+                max_frames = right_column_animation.frame_count
+
+        self.refresh()
+
+        left_index = 1
+        middle_index = 1
+        right_index = 1
+        for frame_index in range(1, max_frames):
+            if left_colums_animation is not None:
+                self.updateCulumn(0, left_colums_animation.getFrame(left_index))
+                if left_index < left_colums_animation.frame_count - 1:
+                    left_index += 1
+                else:
+                    left_index = 0
+                
+
+            if middle_column_animation is not None:
+                self.updateCulumn(1, middle_column_animation.getFrame(middle_index))
+                if middle_index < middle_column_animation.frame_count - 1:
+                    middle_index += 1
+                else:
+                    middle_index = 0
+                
+
+            if right_column_animation is not None:
+                self.updateCulumn(2, right_column_animation.getFrame(right_index))
+                if right_index < right_column_animation.frame_count - 1:
+                    right_index += 1
+                else:
+                    right_index = 0
+                
+
+            self.refresh()
+            time.sleep(1/framerate)
+
+
+
