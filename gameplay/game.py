@@ -1,6 +1,5 @@
 # izveidojam jaunu klasi Game
 import random
-from scripts.clear import clearConsole
 import time
 import sys
 from scripts.display import Display
@@ -29,46 +28,6 @@ class Game:
         
         # Displeja izvades parametri
         self.display = Display()
-        self.left_column_max = 7
-        self.middle_column_max = 77
-        self.right_column_max = 30
-        self.left_column = []
-        self.middle_column = ["","","","","","","",""]
-        self.right_column = ["","","","","","","",""]
-
-    # Displeja izvades menedžments
-    def _refreshDisplay(self):
-        # Atrast maksimālo rindu skaitu displeja reģionos
-        max_rows = len(self.left_column)
-        if len(self.middle_column) > max_rows:
-            max_rows = len(self.middle_column)
-        if len(self.right_column) > max_rows:
-            max_rows = len(self.right_column)
-
-        # Normalizēt attēlojamos displeja reģionus
-        self.left_column = self._normalize(self.left_column, max_rows, self.left_column_max)
-        self.middle_column = self._normalize(self.middle_column, max_rows, self.middle_column_max)
-        self.right_column = self._normalize(self.right_column, max_rows, self.right_column_max)
-
-        # Attēlot displeju
-        clearConsole()
-        for n in range(0, max_rows):
-            print(f'{self.left_column[n]}   {self.middle_column[n]} | {self.right_column[n]}')
-
-    # Izlīdzina līniju garumu un līniju skaitu sarakstā
-    def _normalize(self, list, rows, cols):
-        if len(list) < rows:
-            i = rows - len(list)
-            list += [' '] * i
-        for l in range(0, len(list)):
-            line = str(list[l])
-            if len(line) < cols:
-                c = cols - len(line)
-                line = line + " " * c
-            elif len(line) > cols:
-                line = line[0:cols]
-            list[l] = line
-        return list
 
     # Metode, kura nodrošina neuzminēto burtu aiklāšanu ar "-" simboli
     def _aizklata_varda_generators(self):
