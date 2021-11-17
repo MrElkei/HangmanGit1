@@ -6,6 +6,10 @@ from scripts.display import Display
 from animations.animationHangmanLives import AnimationHangmanLives
 from datetime import datetime 
 
+"""The level of the Game is defined with list of words by difficulty (3 levels options: easy, medium or hard words).
+
+self. includes characteristic of the words and letters for guess, and other parameters of variable, also taimer and animation class. 
+"""
 class Game:
     # veicam klases inicializāciju nododot tai minamo vārdu
     def __init__(self, vards, grutibas_pakape):
