@@ -8,6 +8,7 @@ import random
 import os
 import time
 import sys
+import requests
 #TODO ieviest cheatcodes
 #TODO exit
 #TODO Animēta atvadīšanās
@@ -22,12 +23,13 @@ display.updateLine(2, 1, "Grūtības pakāpes:")
 display.updateLine(2, 2, "    1. viegla")
 display.updateLine(2, 3, "    2. vidēja")
 display.updateLine(2, 4, "    3. grūta")
-for n in range(0, 3):
+display.updateLine(2, 5, "    4. English Word")
+for n in range(0, 4):
     display.animate(left_colums_animation=AnimationHangman())
 
 display.animate(middle_column_animation=AnimationWelcome())
 
-display.updateLine(1, 7, "Laipni lūdzam karātavās! Izvēlies grūtības pakāpi 1, 2 vai 3")
+display.updateLine(1, 7, "Laipni lūdzam karātavās! Izvēlies grūtības pakāpi 1, 2, 3 vai 4")
 display.refresh()
 deriga_ievade = False
 grutibas_pakape_file = ""
@@ -56,8 +58,12 @@ while not deriga_ievade:
             grutibas_pakape_file = 'hard_words.txt'
             deriga_ievade = True
             grutibas_pakape = "grūta"
+        elif ievade == '4':
+            grutibas_pakape_file = 'english_words.txt'
+            deriga_ievade = True
+            grutibas_pakape = "English Word"
         else:
-            display.updateLine(1, 7, "Nepareizi izvēlēta grūtības pakāpe! Izvēlies 1, 2 vai 3")
+            display.updateLine(1, 7, "Nepareizi izvēlēta grūtības pakāpe! Izvēlies 1, 2, 3 vai 4")
             display.refresh()
 
 # Izveido absolūtu ceļu līdz words.txt failam
