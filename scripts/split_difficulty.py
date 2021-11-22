@@ -53,8 +53,8 @@ for word in words_list:
 score_list = []
 for n in range(0, len(words_list)):
 
-"""Score count for word length - for more letters is added higher score, which gives additional points to overall difficulty"""
     #Vārda garuma punktu sadale
+    """Score count for word length - for more letters is added higher score, which gives additional points to overall difficulty"""
     word_len_score = 0
     if word_len[n] < 7:
         pass
