@@ -192,6 +192,9 @@ class Game:
                     # Šāds vārds jau ir minēts
                     self.display.updateLine(1, 2, "Šo vārdu tu jau esi minējis!")
                     self.display.updateLine(1, 3, "Esi uzmanīgāks!")
+                elif minejums == "EXIT":
+                    self._game_exit()
+                    sys.exit()
                 else:
                     # Šāds vārds vēl nav minēts
                     # Pievienojam jauno vārdu minēto vārdu sarakstam
