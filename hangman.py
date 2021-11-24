@@ -8,7 +8,7 @@ import random
 import os
 import time
 import sys
-import requests
+from scripts.EnglishApi import EnglishWords
 
 """It is necessary to import above mentioned packages and clases, to make the game work as expected"""
 
@@ -64,59 +64,64 @@ while not deriga_ievade:
             deriga_ievade = True
             grutibas_pakape = "grūta"
         elif ievade == '4':
-            grutibas_pakape_file = 'english_words.txt'
+            grutibas_pakape_file = 'English Word'
             deriga_ievade = True
             grutibas_pakape = "English Word"
         else:
             display.updateLine(1, 7, "Nepareizi izvēlēta grūtības pakāpe! Izvēlies 1, 2, 3 vai 4")
             display.refresh()
 
-# Izveido absolūtu ceļu līdz words.txt failam
-# 1. Atrod skripta atrašanās vietu
-script_dir = os.path.dirname(os.path.realpath(__file__))
-# 2. Pievieno words.txt atrašanās vietu
-words_file = os.path.join(script_dir, 'data', grutibas_pakape_file)
-
-# Lasām vārdu sarakstu, kā tekstu
-try:
-    with open(words_file, 'r', encoding='utf-8') as file:
-        words_str = file.read()
-except FileNotFoundError:
-    print(f'\nDiemžēl neizdevās nolasīt "{words_file}" failu.')
+if grutibas_pakape_file == 'English Word':
+    english_words = EnglishWords()
+    words_list = english_words.get_words()
 else:
+    # Izveido absolūtu ceļu līdz words.txt failam
+    # 1. Atrod skripta atrašanās vietu
+    script_dir = os.path.dirname(os.path.realpath(__file__))
+    # 2. Pievieno words.txt atrašanās vietu
+    words_file = os.path.join(script_dir, 'data', grutibas_pakape_file)
+
+    # Lasām vārdu sarakstu, kā tekstu
+    try:
+        with open(words_file, 'r', encoding='utf-8') as file:
+            words_str = file.read()
+    except FileNotFoundError:
+        display.updateLine(1, 7, f'Diemžēl neizdevās nolasīt "{words_file}" failu.')
+        display.refresh()
+        sys.exit()
     # Pārveidojam vārdu sarakstu no teksta formāta uz List formātu
     words_list = words_str.splitlines()
 
-    # Sajauc vārdu secību
-    random.shuffle(words_list)
+# Sajauc vārdu secību
+random.shuffle(words_list)
 
-    # Izveido karodziņu spēles turpinājumam
-    vai_turpināt = True
+# Izveido karodziņu spēles turpinājumam
+vai_turpināt = True
 
-    # Uzsāk spēles pamatciklu
-    while words_list and vai_turpināt:
-        
-        # Izveidojam jaunu spēles instanci un nododam tai mināmo vārdu
+# Uzsāk spēles pamatciklu
+while words_list and vai_turpināt:
+    
+    # Izveidojam jaunu spēles instanci un nododam tai mināmo vārdu
+    try:
+        game = Game(words_list.pop(), grutibas_pakape)
+    except IndexError:
+        print(f'\nPaldies par izturību! Visi vārdi šajā grūtības pakāpē ir jau minēti!')
+        print(f'Tava izvēlētā gŗutības pakāpe bija: {grutibas_pakape}')
+        vai_turpināt = False
+    else:
+        # Palaižam spēli
+        game.play()
+
+        # Pārliecināties vai turpināt spēli
         try:
-            game = Game(words_list.pop(), grutibas_pakape)
-        except IndexError:
-            print(f'\nPaldies par izturību! Visi vārdi šajā grūtības pakāpē ir jau minēti!')
-            print(f'Tava izvēlētā gŗutības pakāpe bija: {grutibas_pakape}')
-            vai_turpināt = False
+            atbilde = input("\nVai turpināt spēli (jā / nē): ").upper()
+        except EOFError:
+            print('\nSaņemta "EOFError" kļūda!')
+            time.sleep(3)
+        except KeyboardInterrupt:
+            print('\nPaldies par spēli gaidīsim tevi atkal!')
+            sys.exit()
         else:
-            # Palaižam spēli
-            game.play()
-
-            # Pārliecināties vai turpināt spēli
-            try:
-                atbilde = input("\nVai turpināt spēli (jā / nē): ").upper()
-            except EOFError:
-                print('\nSaņemta "EOFError" kļūda!')
-                time.sleep(3)
-            except KeyboardInterrupt:
-                print('\nPaldies par spēli gaidīsim tevi atkal!')
-                sys.exit()
-            else:
-                if atbilde not in ["JĀ", "JA", "J"]:
-                    vai_turpināt = False
-            
+            if atbilde not in ["JĀ", "JA", "J"]:
+                vai_turpināt = False
+        
