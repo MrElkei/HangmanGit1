@@ -1,8 +1,13 @@
 
 
 # izveidojam jaunu klasi Game
+<<<<<<< HEAD
 from scripts.clear import clearConsole
 
+=======
+from helpers.clear import clearConsole
+#123
+>>>>>>> 0a1d4dcd7090bdd02189e0fc8ed449829ccef589
 
 class Game:
     # veicam klases inicializāciju nododot tai minamo vārdu
