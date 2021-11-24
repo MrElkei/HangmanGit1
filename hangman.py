@@ -1,5 +1,5 @@
 # Veicam mūsu izveidotās klases Game ielādi
-# Pārliecinies, ka mapē gameplay ir izveidots tukšs vails ar nosaukumu __init__.py
+# Pārliecinies, ka mapē gameplay ir izveidots tukšs fails ar nosaukumu __init__.py
 from gameplay.game import Game
 from scripts.display import Display
 from animations.animationHangman import AnimationHangman
@@ -9,6 +9,9 @@ import os
 import time
 import sys
 import requests
+
+"""It is necessary to import above mentioned packages and clases, to make the game work as expected"""
+
 #TODO ieviest cheatcodes
 #TODO exit
 #TODO Animēta atvadīšanās
@@ -17,6 +20,8 @@ import requests
 #TODO pārliecināties, ka saraksts nesatur vienādus vārdus
 #TODO Highscore
 #TODO Tezaurus skaidrojums
+
+"""Some things to work on, to improve the game"""
 
 display = Display()
 display.updateLine(2, 1, "Grūtības pakāpes:")
