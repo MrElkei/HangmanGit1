@@ -1,5 +1,5 @@
 # Veicam mūsu izveidotās klases Game ielādi
-# Pārliecinies, ka mapē gameplay ir izveidots tukšs fails ar nosaukumu __init__.py
+# Pārliecinies, ka mapē gameplay ir tukšs fails ar nosaukumu __init__.py
 from gameplay.game import Game
 from scripts.display import Display
 from animations.animationHangman import AnimationHangman
@@ -10,7 +10,8 @@ import time
 import sys
 from scripts.EnglishApi import EnglishWords
 
-"""It is necessary to import above mentioned packages and clases, to make the game work as expected"""
+"""It is necessary to import above mentioned packages and clases, 
+to make the game work as expected"""
 
 #TODO ieviest cheatcodes
 #TODO exit
@@ -34,7 +35,8 @@ for n in range(0, 4):
 
 display.animate(middle_column_animation=AnimationWelcome())
 
-display.updateLine(1, 7, "Laipni lūdzam karātavās! Izvēlies grūtības pakāpi 1, 2, 3 vai 4")
+display.updateLine(1, 7, 
+"Laipni lūdzam karātavās! Izvēlies grūtības / pakāpi 1, 2, 3 vai 4")
 display.refresh()
 deriga_ievade = False
 grutibas_pakape_file = ""
@@ -68,7 +70,9 @@ while not deriga_ievade:
             deriga_ievade = True
             grutibas_pakape = "English Word"
         else:
-            display.updateLine(1, 7, "Nepareizi izvēlēta grūtības pakāpe! Izvēlies 1, 2, 3 vai 4")
+            display.updateLine
+            (1, 7, "Nepareizi izvēlēta grūtības pakāpe!\
+                 Izvēlies 1, 2, 3 vai 4")
             display.refresh()
 
 if grutibas_pakape_file == 'English Word':
@@ -86,7 +90,8 @@ else:
         with open(words_file, 'r', encoding='utf-8') as file:
             words_str = file.read()
     except FileNotFoundError:
-        display.updateLine(1, 7, f'Diemžēl neizdevās nolasīt "{words_file}" failu.')
+        display.updateLine
+        (1, 7, f'Diemžēl neizdevās nolasīt "{words_file}" failu.')
         display.refresh()
         sys.exit()
     # Pārveidojam vārdu sarakstu no teksta formāta uz List formātu
@@ -105,7 +110,9 @@ while words_list and vai_turpināt:
     try:
         game = Game(words_list.pop(), grutibas_pakape)
     except IndexError:
-        print(f'\nPaldies par izturību! Visi vārdi šajā grūtības pakāpē ir jau minēti!')
+        print
+        (f'\nPaldies par izturību! \
+             Visi vārdi šajā grūtības pakāpē ir jau minēti!')
         print(f'Tava izvēlētā gŗutības pakāpe bija: {grutibas_pakape}')
         vai_turpināt = False
     else:
