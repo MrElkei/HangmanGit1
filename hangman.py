@@ -13,17 +13,6 @@ from scripts.EnglishApi import EnglishWords
 """It is necessary to import above mentioned packages and clases, 
 to make the game work as expected"""
 
-#TODO ieviest cheatcodes
-#TODO exit
-#TODO Animēta atvadīšanās
-#TODO Uzlabot vārdu atlases parametrus - sekojošu līdzskaņu un patskaņu skaits? dalījums zilbēs?
-#TODO Krāsu izvade?
-#TODO pārliecināties, ka saraksts nesatur vienādus vārdus
-#TODO Highscore
-#TODO Tezaurus skaidrojums
-
-"""Some things to work on, to improve the game"""
-
 display = Display()
 display.updateLine(2, 1, "Grūtības pakāpes:")
 display.updateLine(2, 2, "    1. viegla")
