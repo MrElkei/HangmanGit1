@@ -5,7 +5,6 @@ import sys
 from scripts.display import Display
 from animations.animationHangmanLives import AnimationHangmanLives
 from datetime import datetime 
-
 class Game:
     # veicam klases inicializāciju nododot tai minamo vārdu
     def __init__(self, vards, grutibas_pakape):
