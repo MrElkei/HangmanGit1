@@ -107,7 +107,6 @@ class Display:
         self.delim_2 = delim_2
         self._resizeTerminal()
 
-    # TODO pievienot linux un mac OS atbalstu
     def _resizeTerminal(self):
         """Resizes terminal window to fit all characters of the line
         in a single line. Limitation, currently works only on CMD"""
@@ -152,7 +151,6 @@ class Display:
                 max_len = len(c)
         return max_len
 
-    # TODO add a return value of the removed line
     def removeLastLine(self):
         """Remove a last line from the display."""
         max_len = self._get_max_row_count()
@@ -214,7 +212,6 @@ class Display:
             print(f'{self.display[0][n]}{self.delim_1}\
                 {self.display[1][n]}{self.delim_2}{self.display[2][n]}')
 
-    # Atjaunina displeja izvadi
     def refresh(self):
         """Refresh the displayed lines on the screen.
         
