@@ -1,6 +1,23 @@
 # Jauns fails
 import os
 
+"""This file is meant for measuring and adding difficulty for every
+word for the game, so that it would be done automatically.
+Word difficulty is being measured by 4 parameters. First one is the 
+length of the word - the longer the word, the higher the score. 
+Second is popular letter count, which counts how many of the most
+popular letters for guessing are in the word. In this parameter score
+is set higher, if there are less of the popular letters included in the
+word. Third parameter is least popular letter count in the word, which
+measures the amount of least popular letters for guessing in the word.
+The higher the amount of these letters are in the word, the higher the
+score is set. The fourth parameter is unique letter function, which
+measures letter reppetitiveness in the word. The bigger the amount of
+letters repeating in the word from the words length, the less score is
+added. In the end of this file is function for calculating each words
+overall score and adding it to the difficulty levels:
+easy, medium, hard."""
+
 # Izveido absolūtu ceļu līdz words.txt failam
 # 1. Atrod skripta atrašanās vietu
 """Finds the exact location of the game in your computer"""
@@ -42,7 +59,7 @@ for word in words_list:
             count += 1
     popular_letters_count.append(count)
 
-"""2nd difficulty setting calculates the amount of least popular letters
+"""3rd difficulty setting calculates the amount of least popular letters
 for guessing in the word.
 The higher the amount of these letters, the harder the difficulty"""
 unpopular_letters = ['G', 'Ņ', 'Ļ', 'Ģ', 'Ķ', 'Ž', 'H', 'Č']
@@ -72,8 +89,9 @@ for n in range(0, len(words_list)):
 
 
     #Unikālo burtu punktu sadale
-    """Unique letter count function. The more the reppetitive letters
-    are in the word, the easier the overall difficulty"""
+    """4th difficulty is Unique letter count function.
+    The more the reppetitive letters are in the word, the easier
+    is the overall difficulty"""
     letter_repetitiveness_score = 0
     if word_len[n] > 7:
         letter_repetitiveness = (int(((word_len[n] - word_len_unique[n]) * 100)
