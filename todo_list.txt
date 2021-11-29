@@ -1,0 +1,11 @@
+#TODO ieviest cheatcodes
+#TODO Animēta atvadīšanās
+#TODO Uzlabot vārdu atlases parametrus - sekojošu līdzskaņu un patskaņu skaits? dalījums zilbēs?
+#TODO Krāsu izvade?
+#TODO pārliecināties, ka saraksts nesatur vienādus vārdus
+#TODO Highscore
+#TODO Tezaurus skaidrojums
+
+display.py
+# TODO add a return value of the removed line for the removeLastLine()
+# TODO pievienot linux un mac OS atbalstu _resizeTerminal()
