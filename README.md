@@ -2,6 +2,7 @@
 ## Table of the content
 - [About the project](https://github.com/artishox/hangman/new/master?readme=1#about-the-project)
 - [Authors](https://github.com/artishox/hangman/new/master?readme=1#authors)
+- [Printscreen](https://github.com/artishox/hangman/new/master?readme=1#printscreen)
 - [Key features](https://github.com/artishox/hangman/new/master?readme=1#key-features)
 - [Dependencies](https://github.com/artishox/hangman/new/master?readme=1#dependencies)
 
@@ -11,6 +12,20 @@ The variant of the popular word guessing game "Hangman". The game was developed 
 
 ## Authors
 [Artis Kinens](https://github.com/artishox), [Gunta Sončika](https://github.com/Warkrool), [Andris Vovers](https://github.com/vovers711), [Lauris Kauķis](https://github.com/MrElkei) and Daiga Zentele.
+
+## Printscreen
+```
+        |    --== Laipni lūgti karātāvās! ==--                                          | Statistika:
+  +---+ |                                                                               |    Dzīvības: 2
+  |   | | Diemžēl tu neuzminēji, mēģini vēlreiz!                                        |    Vārda  garums: 8
+  O   | | Minamajā vārdā nav burta "U"                                                  |    Minēto burtu sk.: 7
+ /|\  | |                                                                               |    Minēto vārdu sk.: 0
+      | |                                                                               |
+      | | Tavs progress: ----E-IS                                                       | Grūtības pakāpe: viegla.
+======= |                                                                               | Raksti EXIT, lai izietu.
+
+Ieraksti burtu vai vārdu:
+```
 
 ## Key features
 The split_difficulty.py script provides an easy way to sort a list of words into three difficulties that can then be used for the "Hangman" game.
