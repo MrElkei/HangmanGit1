@@ -2,7 +2,7 @@
 ## Table of the content
 - [About the project](https://github.com/artishox/hangman/new/master?readme=1#about-the-project)
 - [Authors](https://github.com/artishox/hangman/new/master?readme=1#authors)
-- [Printscreen](https://github.com/artishox/hangman/new/master?readme=1#printscreen)
+- [Printscreen](https://github.com/artishox/hangman#printscreen)
 - [Key features](https://github.com/artishox/hangman/new/master?readme=1#key-features)
 - [Dependencies](https://github.com/artishox/hangman/new/master?readme=1#dependencies)
 
