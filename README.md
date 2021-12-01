@@ -15,6 +15,19 @@ The variant of the popular word guessing game "Hangman". The game was developed 
 
 ## Printscreen
 ```
+        |                                _____                                          |
+  +---+ |             __ __ ___    ____ /____/_________ _    _____   _____ __           | Grūtības pakāpes:
+  |   | |            / //_//   |  / __ \/   |/_  __/   | |  / /   | / ___// /           |     1. viegla
+  O   | |           / ,<  / /| | / /_/ / /| | / / / /| | | / / /| | \__ \/ /            |     2. vidēja
+ /|\  | |          / /| |/ ___ |/ _, _/ ___ |/ / / ___ | |/ / ___ |___/ /_/             |     3. grūta
+ / \  | |         /_/ |_/_/  |_/_/ |_/_/  |_/_/ /_/  |_|___/_/  |_/____(_)              |     4. English Word
+      | |                                                                               |
+======= | Laipni lūdzam karātavās! Izvēlies grūtības pakāpi 1, 2, 3 vai 4               |
+
+Grūtības pakāpe:
+
+======================================================================================================================
+
         |    --== Laipni lūgti karātāvās! ==--                                          | Statistika:
   +---+ |                                                                               |    Dzīvības: 2
   |   | | Diemžēl tu neuzminēji, mēģini vēlreiz!                                        |    Vārda  garums: 8
@@ -25,6 +38,19 @@ The variant of the popular word guessing game "Hangman". The game was developed 
 ======= |                                                                               | Raksti EXIT, lai izietu.
 
 Ieraksti burtu vai vārdu:
+
+======================================================================================================================
+
+        |         __  ________    _____    ____  ___    __                              | Statistika:
+  +---+ |        / / / /__  / |  / /   |  / __ \/   |  / /                              |    Dzīvības: 3
+  |   | |       / / / /  / /| | / / /| | / /_/ / /| | / /                               |    Vārda  garums: 6
+  O   | |      / /_/ /  / /_| |/ / ___ |/ _, _/ ___ |/_/                                |    Minēto burtu sk.: 9
+ /|   | |      \____/  /____/___/_/  |_/_/ |_/_/  |_(_)                                 |    Minēto vārdu sk.: 0
+      | |                                                                               |
+      | | Apsveicu tu uzminēji vārdu APKURE. Spēles laks (hh:mm:ss) 0:00:55.793427      | Grūtības pakāpe: viegla.
+======= |                                                                               | Raksti EXIT, lai izietu.
+
+Vai turpināt spēli (jā / nē):
 ```
 
 ## Key features
