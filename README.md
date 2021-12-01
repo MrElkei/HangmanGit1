@@ -1,10 +1,10 @@
 # Hangman
 ## Table of the content
-- [About the project](https://github.com/artishox/hangman#about-the-project)
-- [Authors](https://github.com/artishox/hangman#authors)
-- [Printscreen](https://github.com/artishox/hangman#printscreen)
-- [Key features](https://github.com/artishox/hangman#key-features)
-- [Dependencies](https://github.com/artishox/hangman#dependencies)
+- [About the project](https://github.com/artishox/hangman/blob/master/README.md#about-the-project)
+- [Authors](https://github.com/artishox/hangman/blob/master/README.md#authors)
+- [Printscreen](https://github.com/artishox/hangman/blob/master/README.md#printscreen)
+- [Key features](https://github.com/artishox/hangman/blob/master/README.md#key-features)
+- [Dependencies](https://github.com/artishox/hangman/blob/master/README.md#dependencies)
 
 
 ## About the project
