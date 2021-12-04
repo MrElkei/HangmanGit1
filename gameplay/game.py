@@ -12,6 +12,7 @@ from datetime import datetime
 self. includes characteristic of the words and letters for guess, 
 and other parameters of variable, also taimer and animation class. 
 """
+
 class Game:
     def __init__(self, vards, grutibas_pakape):
         self.vards = vards.upper()
