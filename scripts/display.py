@@ -105,7 +105,7 @@ class Display:
                         ["" for n in range(0, init_rows)]]
         self.delim_1 = delim_1
         self.delim_2 = delim_2
-        self._resizeTerminal()
+        #self._resizeTerminal() #this works only on CMD! not on Powershell
 
     def _resizeTerminal(self):
         """Resizes terminal window to fit all characters of the line
