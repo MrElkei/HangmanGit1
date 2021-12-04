@@ -2,6 +2,7 @@ import pytest
 
 from scripts.display import Display
 
+
 def test_display_init():
     display = Display()
     assert hasattr(display, "left_column_max")
