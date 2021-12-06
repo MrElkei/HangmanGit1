@@ -25,7 +25,7 @@ for n in range(0, 4):
 display.animate(middle_column_animation=AnimationWelcome())
 
 display.updateLine(1, 7, 
-"Laipni lūdzam karātavās! Izvēlies grūtības / pakāpi 1, 2, 3 vai 4")
+                   "Laipni lūdzam karātavās! Izvēlies grūtības pakāpi 1, 2, 3 vai 4")
 display.refresh()
 deriga_ievade = False
 grutibas_pakape_file = ""

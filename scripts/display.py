@@ -105,7 +105,7 @@ class Display:
                         ["" for n in range(0, init_rows)]]
         self.delim_1 = delim_1
         self.delim_2 = delim_2
-        self._resizeTerminal()
+        #self._resizeTerminal() #this works only on CMD! not on Powershell
 
     def _resizeTerminal(self):
         """Resizes terminal window to fit all characters of the line
@@ -209,8 +209,11 @@ class Display:
     def _printDysplay(self):
         """Write all lines to the screen."""
         for n in range(0, len(self.display[0])):
-            print(f'{self.display[0][n]}{self.delim_1}\
-                {self.display[1][n]}{self.delim_2}{self.display[2][n]}')
+            print(f'{self.display[0][n]}'
+                + f'{self.delim_1}'
+                + f'{self.display[1][n]}'
+                + f'{self.delim_2}'
+                + f'{self.display[2][n]}')
 
     def refresh(self):
         """Refresh the displayed lines on the screen.
